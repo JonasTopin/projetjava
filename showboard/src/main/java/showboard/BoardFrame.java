@@ -1,5 +1,6 @@
 package showboard;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Rectangle;
 import java.util.Observer;
@@ -54,6 +55,7 @@ public class BoardFrame extends JFrame implements IBoard {
         this.boardPanel = new BoardPanel();
         this.setContentPane(this.boardPanel);
         this.setResizable(false);
+        this.setBackground(Color.BLACK);	//fond de la fenetre en noir
         this.setVisible(true);
     }
 
