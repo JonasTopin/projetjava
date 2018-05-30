@@ -55,7 +55,7 @@ public class BoardFrame extends JFrame implements IBoard {
         this.boardPanel = new BoardPanel();
         this.setContentPane(this.boardPanel);
         this.setResizable(false);
-        this.setBackground(Color.BLACK);	//fond de la fenetre en noir
+        this.setBackground(Color.BLACK);
         this.setVisible(true);
     }
 

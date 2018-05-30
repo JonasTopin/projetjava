@@ -1,14 +1,9 @@
 package main;
 
-import java.awt.Color;
 import java.sql.SQLException;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
 
 import controller.ControllerFacade;
 import model.ModelFacade;
-import showboard.Bone;
 import view.ViewFacade;
 
 /**
@@ -27,18 +22,8 @@ public abstract class Main {
      */
     public static void main(final String[] args) {
         final ControllerFacade controller = new ControllerFacade(new ViewFacade(), new ModelFacade());
-        JFrame fenetre = new JFrame();	//instanciation JFrame
-        fenetre.setTitle("Lorann_Java_Project");	//titre de la fenetre
-        fenetre.setSize(1800, 1000);	//taille de la fenetre
-        fenetre.setLocationRelativeTo(null);	//position de la fenetre au centre de la fenetre
-        fenetre.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);	//permet de fermer la page en cliquant sur la croix
-        
-        JPanel panel = new JPanel();	//instanciation JPanel
-        fenetre.setContentPane(panel);	//JFrame prend en compte le JPanel comme content pane
-        fenetre.setContentPane(new Bone());	//affichage de la classe Bone
-        fenetre.setVisible(true);	//visibilité de la fenetre
-        
-        
+        //final ViewFacade viewfacade = new ViewFacade();
+        //final ModelFacade modelfacade = new ModelFacade();
         
         try {
             controller.start();
