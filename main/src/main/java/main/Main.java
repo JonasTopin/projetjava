@@ -22,9 +22,6 @@ public abstract class Main {
      */
     public static void main(final String[] args) {
         final ControllerFacade controller = new ControllerFacade(new ViewFacade(), new ModelFacade());
-        //final ViewFacade viewfacade = new ViewFacade();
-        //final ModelFacade modelfacade = new ModelFacade();
-        
         try {
             controller.start();
         } catch (final SQLException exception) {
