@@ -6,7 +6,7 @@ import java.awt.Rectangle;
 
 import javax.swing.ImageIcon;
 
-public class DoorOC {
+public class DoorOC extends Walls{
 
 	int x,y;
 

@@ -12,7 +12,7 @@ public class ViewFrame extends JFrame  {
 	public ViewFrame(){
 		
 		this.setTitle("Lorann");
-		this.setSize(800, 550);//definie taille de la fenetre (ici on veux 12 images de 34 px)
+		this.setSize(780, 480);//definie taille de la fenetre (ici on veux 12 images de 34 px)
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		this.setLocationRelativeTo(null);
