@@ -9,7 +9,7 @@ public class ViewFrame extends JFrame  {
 	
 	private static final long serialVersionUID = 1L;
 
-	public ViewFrame(){
+	public ViewFrame(String map){
 		
 		this.setTitle("Lorann");
 		this.setSize(780, 480);//definie taille de la fenetre (ici on veux 12 images de 34 px)
@@ -18,7 +18,7 @@ public class ViewFrame extends JFrame  {
 		this.setLocationRelativeTo(null);
 		
 		
-		this.add(new ConsoleP());
+		this.add(new ConsoleP(map));
 		this.setVisible(true);
 		this.setResizable(false);
 	}

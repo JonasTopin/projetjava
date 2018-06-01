@@ -41,6 +41,8 @@ public class ConsoleP extends JPanel implements KeyListener {
 	private static ArrayList<DoorOC> DoorsOC;
 	private static ArrayList<FireBall> FireBalls;
 
+	private static String map;
+	
 	public void keyReleased(KeyEvent arg0) {
 		// TODO Auto-generated method stub
 	}
@@ -64,7 +66,8 @@ public class ConsoleP extends JPanel implements KeyListener {
 	FileReader fr;
 	Font levelFont = new Font("Calibri", Font.BOLD, 28);
 
-	public ConsoleP() {
+	public ConsoleP(String map) {
+		this.map = map;
 		this.setBackground(Color.BLACK);
 		gold = 0;
 		LevelMaker();
@@ -72,11 +75,14 @@ public class ConsoleP extends JPanel implements KeyListener {
 		addKeyListener(this);
 	}
 
+		
+	
 	protected void LevelMaker() {
 		try {
 
-		//	fr = new FileReader(
-			//		"C:\\Users\\Eloïse\\OneDrive - Association Cesi Viacesi mail\\Année 2017-2018\\Projet\\Projet Java\\Lorann\\Maps\\level1.txt");
+			// fr = new FileReader(
+			// "C:\\Users\\Eloïse\\OneDrive - Association Cesi Viacesi mail\\Année
+			// 2017-2018\\Projet\\Projet Java\\Lorann\\Maps\\level1.txt");
 
 			int x = 0, y = 0, i = 0;
 			touch = false;
@@ -98,13 +104,14 @@ public class ConsoleP extends JPanel implements KeyListener {
 			DoorsOC = new ArrayList<DoorOC>();
 			FireBalls = new ArrayList<FireBall>();
 
-		//	while ((i = fr.read()) != -1) {
-			//	char strImg = (char) i;
+			// while ((i = fr.read()) != -1) {
+			// char strImg = (char) i;
 
-			String str = "011D111011101111111111102      25552      5    22          2     65    22 1110110  2   2       22    2  2  2   2    11102  7 25 2  2   0110    22 2  2  2  2   2552   822 2 5   4  2   2 101   22 0111  2  5   2       22       2 95   2  3    2011111110111111011111110";
+	//		String str = "011D111011101111111111102      25552      5    22          2     65    22 1110110  2   2       22    2  2  2   2    11102  7 25 2  2   0110    22 2  2  2  2   2552   822 2 5   4  2   2 101   22 0111  2  5   2       22       2 95   2  3    2011111110111111011111110";
+			String str = this.map;
 			
-			for (int t = 0; t < str.length() ; t++) {
-				
+			for (int t = 0; t < str.length(); t++) {
+
 				char strImg = str.charAt(t);
 				switch (strImg) {
 				case '0':
@@ -874,7 +881,8 @@ public class ConsoleP extends JPanel implements KeyListener {
 		}
 		return false;
 	}
-	public void pathToLorann1(Movements movements) { //Path used by the FireBall
+
+	public void pathToLorann1(Movements movements) { // Path used by the FireBall
 
 		int PlusRapide;
 		PlusRapide = 1500;
@@ -986,13 +994,12 @@ public class ConsoleP extends JPanel implements KeyListener {
 		}
 	}
 
-	public void pathToLorann2(Movements movements) { //Random path used by monsters
-		
+	public void pathToLorann2(Movements movements) { // Random path used by monsters
+
 		for (int i = 0; i < 100; i++) {
-			
-			final int nbrDirection = (int) (Math.random()*7);
-			switch (nbrDirection)
-			{
+
+			final int nbrDirection = (int) (Math.random() * 7);
+			switch (nbrDirection) {
 			case 0:
 				movements.setDir("LEFT");
 				break;
@@ -1019,353 +1026,17 @@ public class ConsoleP extends JPanel implements KeyListener {
 				break;
 
 			default:
-			break;
+				break;
 			}
-			if(!MonsterCollision(movements.direction, movements))
-			{
+			if (!MonsterCollision(movements.direction, movements)) {
 				break;
 			}
 		}
-		
-		if(MonsterCollision(movements.direction, movements))
-		{
+
+		if (MonsterCollision(movements.direction, movements)) {
 			movements.setDir("");
 		}
-		
-		
-		switch (movements.getDir()) {
 
-		case "UPLEFT":
-			movements.move();
-			break;
-
-		case "UPRIGHT":
-			movements.move();
-			break;
-
-		case "DOWNLEFT":
-			movements.move();
-			break;
-
-		case "DOWNRIGHT":
-			movements.move();
-			break;
-
-		case "DOWN":
-			movements.move();
-			break;
-
-		case "LEFT":
-			movements.move();
-			break;
-
-		case "UP":
-			movements.move();
-			break;
-
-		case "RIGHT":
-			movements.move();
-			break;
-
-		default:
-			break;
-		}
-	}
-	
-	public void keyPressed(KeyEvent arg0) {
-		int Key = arg0.getKeyCode();
-		int x = 0;
-		int y = 0;
-
-		if (Key == KeyEvent.VK_S || Key == KeyEvent.VK_DOWN) {
-			lorann.setDir("DOWN");
-			if (!CheckCollision("DOWN")) {
-				if (!MonsterEat(monster1)) {
-					if (!MonsterEat(monster2)) {
-						if (!MonsterEat(monster3)) {
-							if (!MonsterEat(monster4)) {
-								
-								lorann.move();
-								Bank();
-							}
-						}
-					}
-				}
-			}
-			FollowShoot();
-			if (!prisond1)
-				pathToLorann2(monster1);
-			if (!prisond2)
-				pathToLorann2(monster2);
-			if (!prisond3)
-				pathToLorann2(monster3);
-			if (!prisond4)
-				pathToLorann2(monster4);
-
-		} else if (Key == KeyEvent.VK_Z || Key == KeyEvent.VK_UP) {
-			lorann.setDir("UP");
-			if (!CheckCollision("UP")) {
-				if (!MonsterEat(monster1)) {
-					if (!MonsterEat(monster2)) {
-						if (!MonsterEat(monster3)) {
-							if (!MonsterEat(monster4)) {
-								
-								lorann.move();
-								Bank();
-							}
-						}
-					}
-				}
-			}
-			FollowShoot();
-			if (!prisond1)
-				pathToLorann2(monster1);
-			if (!prisond2)
-				pathToLorann2(monster2);
-			if (!prisond3)
-				pathToLorann2(monster3);
-			if (!prisond4)
-				pathToLorann2(monster4);
-		} else if (Key == KeyEvent.VK_D || Key == KeyEvent.VK_RIGHT) {
-			lorann.setDir("RIGHT");
-			if (!CheckCollision("RIGHT")) {
-				if (!MonsterEat(monster1)) {
-					if (!MonsterEat(monster2)) {
-						if (!MonsterEat(monster3)) {
-							if (!MonsterEat(monster4)) {
-								
-								lorann.move();
-								Bank();
-							}
-						}
-					}
-				}
-			}
-			FollowShoot();
-			if (!prisond1)
-				pathToLorann2(monster1);
-			if (!prisond2)
-				pathToLorann2(monster2);
-			if (!prisond3)
-				pathToLorann2(monster3);
-			if (!prisond4)
-				pathToLorann2(monster4);
-		} else if (Key == KeyEvent.VK_Q || Key == KeyEvent.VK_LEFT) {
-			lorann.setDir("LEFT");
-			if (!CheckCollision("LEFT")) {
-				if (!MonsterEat(monster1)) {
-					if (!MonsterEat(monster2)) {
-						if (!MonsterEat(monster3)) {
-							if (!MonsterEat(monster4)) {
-								
-								lorann.move();
-								Bank();
-							}
-						}
-					}
-				}
-			}
-			FollowShoot();
-			if (!prisond1)
-				pathToLorann2(monster1);
-			if (!prisond2)
-				pathToLorann2(monster2);
-			if (!prisond3)
-				pathToLorann2(monster3);
-			if (!prisond4)
-				pathToLorann2(monster4);
-		} else if (Key == KeyEvent.VK_A) {
-			lorann.setDir("UPLEFT");
-			if (!CheckCollision("UPLEFT")) {
-				if (!MonsterEat(monster1)) {
-					if (!MonsterEat(monster2)) {
-						if (!MonsterEat(monster3)) {
-							if (!MonsterEat(monster4)) {
-								
-								lorann.move();
-								Bank();
-							}
-						}
-					}
-				}
-			}
-			FollowShoot();
-			if (!prisond1)
-				pathToLorann2(monster1);
-			if (!prisond2)
-				pathToLorann2(monster2);
-			if (!prisond3)
-				pathToLorann2(monster3);
-			if (!prisond4)
-				pathToLorann2(monster4);
-		} else if (Key == KeyEvent.VK_E) {
-			lorann.setDir("UPRIGHT");
-			if (!CheckCollision("UPRIGHT")) {
-				if (!MonsterEat(monster1)) {
-					if (!MonsterEat(monster2)) {
-						if (!MonsterEat(monster3)) {
-							if (!MonsterEat(monster4)) {
-								
-								lorann.move();
-								Bank();
-							}
-						}
-					}
-				}
-			}
-			FollowShoot();
-			if (!prisond1)
-				pathToLorann2(monster1);
-			if (!prisond2)
-				pathToLorann2(monster2);
-			if (!prisond3)
-				pathToLorann2(monster3);
-			if (!prisond4)
-				pathToLorann2(monster4);
-		} else if (Key == KeyEvent.VK_W) {
-			lorann.setDir("DOWNLEFT");
-			if (!CheckCollision("DOWNLEFT")) {
-				if (!MonsterEat(monster1)) {
-					if (!MonsterEat(monster2)) {
-						if (!MonsterEat(monster3)) {
-							if (!MonsterEat(monster4)) {
-								
-								lorann.move();
-								Bank();
-							}
-						}
-					}
-				}
-			}
-			FollowShoot();
-			if (!prisond1)
-				pathToLorann2(monster1);
-			if (!prisond2)
-				pathToLorann2(monster2);
-			if (!prisond3)
-				pathToLorann2(monster3);
-			if (!prisond4)
-				pathToLorann2(monster4);
-		} else if (Key == KeyEvent.VK_X) {
-			lorann.setDir("DOWNRIGHT");
-			if (!CheckCollision("DOWNRIGHT")) {
-				if (!MonsterEat(monster1)) {
-					if (!MonsterEat(monster2)) {
-						if (!MonsterEat(monster3)) {
-							if (!MonsterEat(monster4)) {
-							
-								lorann.move();
-								Bank();
-							}
-						}
-					}
-				}
-			}
-			FollowShoot();
-			if (!prisond1)
-				pathToLorann2(monster1);
-			if (!prisond2)
-				pathToLorann2(monster2);
-			if (!prisond3)
-				pathToLorann2(monster3);
-			if (!prisond4)
-				pathToLorann2(monster4);
-		} else if (Key == KeyEvent.VK_SPACE) {
-
-			if (shoot == false) {
-				shoot = true;
-				fireball = new FireBall(x * 32, y * 32);
-				FireBalls.add(fireball);
-				Shoot();
-			} else if (shoot == true) {
-				{
-					FireBallRemove();
-					touch = true;
-				}
-			}
-		} else if (Key == KeyEvent.VK_R) {
-			LevelMaker();
-		}
-
-		repaint();
-	}
-	
-}
-	
-	
-	/*public void pathToLorann1(Movements movements) {
-
-		int PlusRapide;
-		PlusRapide = 1500;
-
-		if (!MonsterCollision("UPLEFT", movements)) {
-			if (PlusRapide > Math.abs((lorann.getX() - (movements.getX() - 32)))
-					+ Math.abs((lorann.getY() - (movements.getY() - 32)))) {
-				PlusRapide = Math.abs((lorann.getX() - (movements.getX() - 32)))
-						+ Math.abs((lorann.getY() - (movements.getY() - 32)));
-				movements.setDir("UPLEFT");
-			}
-		}
-		if (!MonsterCollision("UPRIGHT", movements)) {
-			if (PlusRapide > Math.abs((lorann.getX() - (movements.getX() + 32)))
-					+ Math.abs((lorann.getY() - (movements.getY() - 32)))) {
-				PlusRapide = Math.abs((lorann.getX() - (movements.getX() + 32)))
-						+ Math.abs((lorann.getY() - (movements.getY() - 32)));
-				movements.setDir("UPRIGHT");
-			}
-		}
-		if (!MonsterCollision("DOWNLEFT", movements)) {
-			if (PlusRapide > Math.abs((lorann.getX() - (movements.getX() - 32)))
-					+ Math.abs((lorann.getY() - (movements.getY() + 32)))) {
-				PlusRapide = Math.abs((lorann.getX() - (movements.getX() - 32)))
-						+ Math.abs((lorann.getY() - (movements.getY() + 32)));
-				movements.setDir("DOWNLEFT");
-			}
-		}
-		if (!MonsterCollision("DOWNRIGHT", movements)) {
-			if (PlusRapide > Math.abs((lorann.getX() - (movements.getX() + 32)))
-					+ Math.abs((lorann.getY() - (movements.getY() + 32)))) {
-				PlusRapide = Math.abs((lorann.getX() - (movements.getX() + 32)))
-						+ Math.abs((lorann.getY() - (movements.getY() + 32)));
-				movements.setDir("DOWNRIGHT");
-			}
-		}
-
-		if (!MonsterCollision("DOWN", movements)) {
-			if (PlusRapide > Math.abs((lorann.getX() - (movements.getX() + 0)))
-					+ Math.abs((lorann.getY() - (movements.getY() + 32)))) {
-				PlusRapide = Math.abs((lorann.getX() - (movements.getX() + 0)))
-						+ Math.abs((lorann.getY() - (movements.getY() + 32)));
-				movements.setDir("DOWN");
-			}
-		}
-
-		if (!MonsterCollision("LEFT", movements)) {
-			if (PlusRapide > Math.abs((lorann.getX() - (movements.getX() - 32)))
-					+ Math.abs((lorann.getY() - (movements.getY() + 0)))) {
-				PlusRapide = Math.abs((lorann.getX() - (movements.getX() - 32)))
-						+ Math.abs((lorann.getY() - (movements.getY() + 0)));
-				movements.setDir("LEFT");
-			}
-		}
-
-		if (!MonsterCollision("UP", movements)) {
-			if (PlusRapide > Math.abs((lorann.getX() - (movements.getX() + 0)))
-					+ Math.abs((lorann.getY() - (movements.getY() - 32)))) {
-				PlusRapide = Math.abs((lorann.getX() - (movements.getX() + 0)))
-						+ Math.abs((lorann.getY() - (movements.getY() - 32)));
-				movements.setDir("UP");
-			}
-		}
-
-		if (!MonsterCollision("RIGHT", movements)) {
-			if (PlusRapide > Math.abs((lorann.getX() - (movements.getX() + 32)))
-					+ Math.abs((lorann.getY() - (movements.getY() + 0)))) {
-				PlusRapide = Math.abs((lorann.getX() - (movements.getX() + 32)))
-						+ Math.abs((lorann.getY() - (movements.getY() + 0)));
-				movements.setDir("RIGHT");
-			}
-		}
 		switch (movements.getDir()) {
 
 		case "UPLEFT":
@@ -1405,120 +1076,6 @@ public class ConsoleP extends JPanel implements KeyListener {
 		}
 	}
 
-	public void pathToLorann2(Movements movements) {
-
-for (int i = 0; i < 100; i++) {
-			
-			final int nbrDirection = (int) (Math.random()*7);
-			switch (nbrDirection)
-			{
-			case 0:
-				movements.setDir("LEFT");
-				break;
-			case 1:
-				movements.setDir("DOWN");
-				break;
-			case 2:
-				movements.setDir("RIGHT");
-				break;
-			case 3:
-				movements.setDir("UP");
-				break;
-			case 4:
-				movements.setDir("DOWNLEFT");
-				break;
-			case 5:
-				movements.setDir("DOWNRIGHT");
-				break;
-			case 6:
-				movements.setDir("UPLEFT");
-				break;
-			case 7:
-				movements.setDir("UPRIGHT");
-				break;
-			}
-			if(!MonsterCollision(movements.direction, movements))
-			{
-				break;
-			}
-		}
-
-		switch (movements.getDir()) {
-
-		case "UPLEFT":
-			movements.move();
-			break;
-
-		case "UPRIGHT":
-			movements.move();
-			break;
-
-		case "DOWNLEFT":
-			movements.move();
-			break;
-
-		case "DOWNRIGHT":
-			movements.move();
-			break;
-
-		default:
-			break;
-		}
-	}
-
-	public void pathToLorann2(Movements movements) {
-		if (movements.getX() < lorann.getX()) {
-			if (!MonsterCollision("RIGHT", movements)) {
-				movements.setDir("RIGHT");
-				movements.move();
-			}
-		} else if (movements.getX() > lorann.getX()) {
-			if (!MonsterCollision("LEFT", movements)) {
-				movements.setDir("LEFT");
-				movements.move();
-			}
-		} else if (movements.getX() == lorann.getX()) {
-			if (movements.getY() > lorann.getY()) {
-				if (!MonsterCollision("UP", movements)) {
-					movements.setDir("UP");
-					movements.move();
-				}
-			} else if (movements.getY() < lorann.getY()) {
-				if (!MonsterCollision("DOWN", movements)) {
-					movements.setDir("DOWN");
-					movements.move();
-				}
-			}
-		}
-	}
-
-	public void pathToLorann2(Movements movements) {
-
-		if (movements.getY() < lorann.getY()) {
-			if (!MonsterCollision("DOWN", movements)) {
-				movements.setDir("DOWN");
-				movements.move();
-			}
-		} else if (movements.getY() > lorann.getY()) {
-			if (!MonsterCollision("UP", movements)) {
-				movements.setDir("UP");
-				movements.move();
-			}
-		} else if (movements.getY() == lorann.getY()) {
-			if (movements.getX() > lorann.getX()) {
-				if (!MonsterCollision("LEFT", movements)) {
-					movements.setDir("LEFT");
-					movements.move();
-				}
-			} else if (movements.getY() < lorann.getY()) {
-				if (!MonsterCollision("RIGHT", movements)) {
-					movements.setDir("RIGHT");
-					movements.move();
-				}
-			}
-		}
-	}
-
 	public void keyPressed(KeyEvent arg0) {
 		int Key = arg0.getKeyCode();
 		int x = 0;
@@ -1531,7 +1088,7 @@ for (int i = 0; i < 100; i++) {
 					if (!MonsterEat(monster2)) {
 						if (!MonsterEat(monster3)) {
 							if (!MonsterEat(monster4)) {
-								
+
 								lorann.move();
 								Bank();
 							}
@@ -1556,7 +1113,7 @@ for (int i = 0; i < 100; i++) {
 					if (!MonsterEat(monster2)) {
 						if (!MonsterEat(monster3)) {
 							if (!MonsterEat(monster4)) {
-								
+
 								lorann.move();
 								Bank();
 							}
@@ -1580,7 +1137,7 @@ for (int i = 0; i < 100; i++) {
 					if (!MonsterEat(monster2)) {
 						if (!MonsterEat(monster3)) {
 							if (!MonsterEat(monster4)) {
-								
+
 								lorann.move();
 								Bank();
 							}
@@ -1604,7 +1161,7 @@ for (int i = 0; i < 100; i++) {
 					if (!MonsterEat(monster2)) {
 						if (!MonsterEat(monster3)) {
 							if (!MonsterEat(monster4)) {
-								
+
 								lorann.move();
 								Bank();
 							}
@@ -1628,7 +1185,7 @@ for (int i = 0; i < 100; i++) {
 					if (!MonsterEat(monster2)) {
 						if (!MonsterEat(monster3)) {
 							if (!MonsterEat(monster4)) {
-								
+
 								lorann.move();
 								Bank();
 							}
@@ -1652,7 +1209,7 @@ for (int i = 0; i < 100; i++) {
 					if (!MonsterEat(monster2)) {
 						if (!MonsterEat(monster3)) {
 							if (!MonsterEat(monster4)) {
-								
+
 								lorann.move();
 								Bank();
 							}
@@ -1676,7 +1233,7 @@ for (int i = 0; i < 100; i++) {
 					if (!MonsterEat(monster2)) {
 						if (!MonsterEat(monster3)) {
 							if (!MonsterEat(monster4)) {
-								
+
 								lorann.move();
 								Bank();
 							}
@@ -1700,6 +1257,7 @@ for (int i = 0; i < 100; i++) {
 					if (!MonsterEat(monster2)) {
 						if (!MonsterEat(monster3)) {
 							if (!MonsterEat(monster4)) {
+
 								lorann.move();
 								Bank();
 							}
@@ -1730,10 +1288,200 @@ for (int i = 0; i < 100; i++) {
 				}
 			}
 		} else if (Key == KeyEvent.VK_R) {
+			gold = 0;
 			LevelMaker();
 		}
 
 		repaint();
 	}
+
 }
-*/
+
+/*
+ * public void pathToLorann1(Movements movements) {
+ * 
+ * int PlusRapide; PlusRapide = 1500;
+ * 
+ * if (!MonsterCollision("UPLEFT", movements)) { if (PlusRapide >
+ * Math.abs((lorann.getX() - (movements.getX() - 32))) + Math.abs((lorann.getY()
+ * - (movements.getY() - 32)))) { PlusRapide = Math.abs((lorann.getX() -
+ * (movements.getX() - 32))) + Math.abs((lorann.getY() - (movements.getY() -
+ * 32))); movements.setDir("UPLEFT"); } } if (!MonsterCollision("UPRIGHT",
+ * movements)) { if (PlusRapide > Math.abs((lorann.getX() - (movements.getX() +
+ * 32))) + Math.abs((lorann.getY() - (movements.getY() - 32)))) { PlusRapide =
+ * Math.abs((lorann.getX() - (movements.getX() + 32))) + Math.abs((lorann.getY()
+ * - (movements.getY() - 32))); movements.setDir("UPRIGHT"); } } if
+ * (!MonsterCollision("DOWNLEFT", movements)) { if (PlusRapide >
+ * Math.abs((lorann.getX() - (movements.getX() - 32))) + Math.abs((lorann.getY()
+ * - (movements.getY() + 32)))) { PlusRapide = Math.abs((lorann.getX() -
+ * (movements.getX() - 32))) + Math.abs((lorann.getY() - (movements.getY() +
+ * 32))); movements.setDir("DOWNLEFT"); } } if (!MonsterCollision("DOWNRIGHT",
+ * movements)) { if (PlusRapide > Math.abs((lorann.getX() - (movements.getX() +
+ * 32))) + Math.abs((lorann.getY() - (movements.getY() + 32)))) { PlusRapide =
+ * Math.abs((lorann.getX() - (movements.getX() + 32))) + Math.abs((lorann.getY()
+ * - (movements.getY() + 32))); movements.setDir("DOWNRIGHT"); } }
+ * 
+ * if (!MonsterCollision("DOWN", movements)) { if (PlusRapide >
+ * Math.abs((lorann.getX() - (movements.getX() + 0))) + Math.abs((lorann.getY()
+ * - (movements.getY() + 32)))) { PlusRapide = Math.abs((lorann.getX() -
+ * (movements.getX() + 0))) + Math.abs((lorann.getY() - (movements.getY() +
+ * 32))); movements.setDir("DOWN"); } }
+ * 
+ * if (!MonsterCollision("LEFT", movements)) { if (PlusRapide >
+ * Math.abs((lorann.getX() - (movements.getX() - 32))) + Math.abs((lorann.getY()
+ * - (movements.getY() + 0)))) { PlusRapide = Math.abs((lorann.getX() -
+ * (movements.getX() - 32))) + Math.abs((lorann.getY() - (movements.getY() +
+ * 0))); movements.setDir("LEFT"); } }
+ * 
+ * if (!MonsterCollision("UP", movements)) { if (PlusRapide >
+ * Math.abs((lorann.getX() - (movements.getX() + 0))) + Math.abs((lorann.getY()
+ * - (movements.getY() - 32)))) { PlusRapide = Math.abs((lorann.getX() -
+ * (movements.getX() + 0))) + Math.abs((lorann.getY() - (movements.getY() -
+ * 32))); movements.setDir("UP"); } }
+ * 
+ * if (!MonsterCollision("RIGHT", movements)) { if (PlusRapide >
+ * Math.abs((lorann.getX() - (movements.getX() + 32))) + Math.abs((lorann.getY()
+ * - (movements.getY() + 0)))) { PlusRapide = Math.abs((lorann.getX() -
+ * (movements.getX() + 32))) + Math.abs((lorann.getY() - (movements.getY() +
+ * 0))); movements.setDir("RIGHT"); } } switch (movements.getDir()) {
+ * 
+ * case "UPLEFT": movements.move(); break;
+ * 
+ * case "UPRIGHT": movements.move(); break;
+ * 
+ * case "DOWNLEFT": movements.move(); break;
+ * 
+ * case "DOWNRIGHT": movements.move(); break;
+ * 
+ * case "DOWN": movements.move(); break;
+ * 
+ * case "LEFT": movements.move(); break;
+ * 
+ * case "UP": movements.move(); break;
+ * 
+ * case "RIGHT": movements.move(); break;
+ * 
+ * default: break; } }
+ * 
+ * public void pathToLorann2(Movements movements) {
+ * 
+ * for (int i = 0; i < 100; i++) {
+ * 
+ * final int nbrDirection = (int) (Math.random()*7); switch (nbrDirection) {
+ * case 0: movements.setDir("LEFT"); break; case 1: movements.setDir("DOWN");
+ * break; case 2: movements.setDir("RIGHT"); break; case 3:
+ * movements.setDir("UP"); break; case 4: movements.setDir("DOWNLEFT"); break;
+ * case 5: movements.setDir("DOWNRIGHT"); break; case 6:
+ * movements.setDir("UPLEFT"); break; case 7: movements.setDir("UPRIGHT");
+ * break; } if(!MonsterCollision(movements.direction, movements)) { break; } }
+ * 
+ * switch (movements.getDir()) {
+ * 
+ * case "UPLEFT": movements.move(); break;
+ * 
+ * case "UPRIGHT": movements.move(); break;
+ * 
+ * case "DOWNLEFT": movements.move(); break;
+ * 
+ * case "DOWNRIGHT": movements.move(); break;
+ * 
+ * default: break; } }
+ * 
+ * public void pathToLorann2(Movements movements) { if (movements.getX() <
+ * lorann.getX()) { if (!MonsterCollision("RIGHT", movements)) {
+ * movements.setDir("RIGHT"); movements.move(); } } else if (movements.getX() >
+ * lorann.getX()) { if (!MonsterCollision("LEFT", movements)) {
+ * movements.setDir("LEFT"); movements.move(); } } else if (movements.getX() ==
+ * lorann.getX()) { if (movements.getY() > lorann.getY()) { if
+ * (!MonsterCollision("UP", movements)) { movements.setDir("UP");
+ * movements.move(); } } else if (movements.getY() < lorann.getY()) { if
+ * (!MonsterCollision("DOWN", movements)) { movements.setDir("DOWN");
+ * movements.move(); } } } }
+ * 
+ * public void pathToLorann2(Movements movements) {
+ * 
+ * if (movements.getY() < lorann.getY()) { if (!MonsterCollision("DOWN",
+ * movements)) { movements.setDir("DOWN"); movements.move(); } } else if
+ * (movements.getY() > lorann.getY()) { if (!MonsterCollision("UP", movements))
+ * { movements.setDir("UP"); movements.move(); } } else if (movements.getY() ==
+ * lorann.getY()) { if (movements.getX() > lorann.getX()) { if
+ * (!MonsterCollision("LEFT", movements)) { movements.setDir("LEFT");
+ * movements.move(); } } else if (movements.getY() < lorann.getY()) { if
+ * (!MonsterCollision("RIGHT", movements)) { movements.setDir("RIGHT");
+ * movements.move(); } } } }
+ * 
+ * public void keyPressed(KeyEvent arg0) { int Key = arg0.getKeyCode(); int x =
+ * 0; int y = 0;
+ * 
+ * if (Key == KeyEvent.VK_S || Key == KeyEvent.VK_DOWN) { lorann.setDir("DOWN");
+ * if (!CheckCollision("DOWN")) { if (!MonsterEat(monster1)) { if
+ * (!MonsterEat(monster2)) { if (!MonsterEat(monster3)) { if
+ * (!MonsterEat(monster4)) {
+ * 
+ * lorann.move(); Bank(); } } } } } FollowShoot(); if (!prisond1)
+ * pathToLorann2(monster1); if (!prisond2) pathToLorann2(monster2); if
+ * (!prisond3) pathToLorann2(monster3); if (!prisond4) pathToLorann2(monster4);
+ * 
+ * } else if (Key == KeyEvent.VK_Z || Key == KeyEvent.VK_UP) {
+ * lorann.setDir("UP"); if (!CheckCollision("UP")) { if (!MonsterEat(monster1))
+ * { if (!MonsterEat(monster2)) { if (!MonsterEat(monster3)) { if
+ * (!MonsterEat(monster4)) {
+ * 
+ * lorann.move(); Bank(); } } } } } FollowShoot(); if (!prisond1)
+ * pathToLorann2(monster1); if (!prisond2) pathToLorann2(monster2); if
+ * (!prisond3) pathToLorann2(monster3); if (!prisond4) pathToLorann2(monster4);
+ * } else if (Key == KeyEvent.VK_D || Key == KeyEvent.VK_RIGHT) {
+ * lorann.setDir("RIGHT"); if (!CheckCollision("RIGHT")) { if
+ * (!MonsterEat(monster1)) { if (!MonsterEat(monster2)) { if
+ * (!MonsterEat(monster3)) { if (!MonsterEat(monster4)) {
+ * 
+ * lorann.move(); Bank(); } } } } } FollowShoot(); if (!prisond1)
+ * pathToLorann2(monster1); if (!prisond2) pathToLorann2(monster2); if
+ * (!prisond3) pathToLorann2(monster3); if (!prisond4) pathToLorann2(monster4);
+ * } else if (Key == KeyEvent.VK_Q || Key == KeyEvent.VK_LEFT) {
+ * lorann.setDir("LEFT"); if (!CheckCollision("LEFT")) { if
+ * (!MonsterEat(monster1)) { if (!MonsterEat(monster2)) { if
+ * (!MonsterEat(monster3)) { if (!MonsterEat(monster4)) {
+ * 
+ * lorann.move(); Bank(); } } } } } FollowShoot(); if (!prisond1)
+ * pathToLorann2(monster1); if (!prisond2) pathToLorann2(monster2); if
+ * (!prisond3) pathToLorann2(monster3); if (!prisond4) pathToLorann2(monster4);
+ * } else if (Key == KeyEvent.VK_A) { lorann.setDir("UPLEFT"); if
+ * (!CheckCollision("UPLEFT")) { if (!MonsterEat(monster1)) { if
+ * (!MonsterEat(monster2)) { if (!MonsterEat(monster3)) { if
+ * (!MonsterEat(monster4)) {
+ * 
+ * lorann.move(); Bank(); } } } } } FollowShoot(); if (!prisond1)
+ * pathToLorann2(monster1); if (!prisond2) pathToLorann2(monster2); if
+ * (!prisond3) pathToLorann2(monster3); if (!prisond4) pathToLorann2(monster4);
+ * } else if (Key == KeyEvent.VK_E) { lorann.setDir("UPRIGHT"); if
+ * (!CheckCollision("UPRIGHT")) { if (!MonsterEat(monster1)) { if
+ * (!MonsterEat(monster2)) { if (!MonsterEat(monster3)) { if
+ * (!MonsterEat(monster4)) {
+ * 
+ * lorann.move(); Bank(); } } } } } FollowShoot(); if (!prisond1)
+ * pathToLorann2(monster1); if (!prisond2) pathToLorann2(monster2); if
+ * (!prisond3) pathToLorann2(monster3); if (!prisond4) pathToLorann2(monster4);
+ * } else if (Key == KeyEvent.VK_W) { lorann.setDir("DOWNLEFT"); if
+ * (!CheckCollision("DOWNLEFT")) { if (!MonsterEat(monster1)) { if
+ * (!MonsterEat(monster2)) { if (!MonsterEat(monster3)) { if
+ * (!MonsterEat(monster4)) {
+ * 
+ * lorann.move(); Bank(); } } } } } FollowShoot(); if (!prisond1)
+ * pathToLorann2(monster1); if (!prisond2) pathToLorann2(monster2); if
+ * (!prisond3) pathToLorann2(monster3); if (!prisond4) pathToLorann2(monster4);
+ * } else if (Key == KeyEvent.VK_X) { lorann.setDir("DOWNRIGHT"); if
+ * (!CheckCollision("DOWNRIGHT")) { if (!MonsterEat(monster1)) { if
+ * (!MonsterEat(monster2)) { if (!MonsterEat(monster3)) { if
+ * (!MonsterEat(monster4)) { lorann.move(); Bank(); } } } } } FollowShoot(); if
+ * (!prisond1) pathToLorann2(monster1); if (!prisond2) pathToLorann2(monster2);
+ * if (!prisond3) pathToLorann2(monster3); if (!prisond4)
+ * pathToLorann2(monster4); } else if (Key == KeyEvent.VK_SPACE) {
+ * 
+ * if (shoot == false) { shoot = true; fireball = new FireBall(x * 32, y * 32);
+ * FireBalls.add(fireball); Shoot(); } else if (shoot == true) { {
+ * FireBallRemove(); touch = true; } } } else if (Key == KeyEvent.VK_R) {
+ * LevelMaker(); }
+ * 
+ * repaint(); } }
+ */

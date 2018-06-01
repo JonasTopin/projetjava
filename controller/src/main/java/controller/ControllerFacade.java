@@ -20,6 +20,8 @@ public class ControllerFacade implements IController {
 
     /** The model. */
     private final IModel model;
+    
+    public String map;
 
     /**
      * Instantiates a new controller facade.
@@ -42,7 +44,7 @@ public class ControllerFacade implements IController {
      *             the SQL exception
      */
     public void start() throws SQLException {
-        this.getView().displayMessage(this.getModel().getExampleById(1).toString());
+      /*  this.getView().displayMessage(this.getModel().getExampleById(1).toString());
 
         this.getView().displayMessage(this.getModel().getExampleByName("Example 2").toString());
 
@@ -52,7 +54,9 @@ public class ControllerFacade implements IController {
             message.append(example);
             message.append('\n');
         }
-        this.getView().displayMessage(message.toString());
+     this.getView().displayMessage(message.toString());*/
+    	
+    	this.map = this.getModel().getExampleById(2).toString();
     }
 
     /**
@@ -71,5 +75,9 @@ public class ControllerFacade implements IController {
      */
     public IModel getModel() {
         return this.model;
+    }
+    
+    public String getMap() {
+    	return this.map;
     }
 }
