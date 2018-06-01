@@ -75,8 +75,8 @@ public class ConsoleP extends JPanel implements KeyListener {
 	protected void LevelMaker() {
 		try {
 
-			fr = new FileReader(
-					"C:\\Users\\Eloïse\\OneDrive - Association Cesi Viacesi mail\\Année 2017-2018\\Projet\\Projet Java\\Lorann\\Maps\\level1.txt");
+		//	fr = new FileReader(
+			//		"C:\\Users\\Eloïse\\OneDrive - Association Cesi Viacesi mail\\Année 2017-2018\\Projet\\Projet Java\\Lorann\\Maps\\level1.txt");
 
 			int x = 0, y = 0, i = 0;
 			touch = false;
@@ -98,9 +98,14 @@ public class ConsoleP extends JPanel implements KeyListener {
 			DoorsOC = new ArrayList<DoorOC>();
 			FireBalls = new ArrayList<FireBall>();
 
-			while ((i = fr.read()) != -1) {
-				char strImg = (char) i;
+		//	while ((i = fr.read()) != -1) {
+			//	char strImg = (char) i;
 
+			String str = "011D111011101111111111102      25552      5    22          2     65    22 1110110  2   2       22    2  2  2   2    11102  7 25 2  2   0110    22 2  2  2  2   2552   822 2 5   4  2   2 101   22 0111  2  5   2       22       2 95   2  3    2011111110111111011111110";
+			
+			for (int t = 0; t < str.length() ; t++) {
+				
+				char strImg = str.charAt(t);
 				switch (strImg) {
 				case '0':
 					Game[x][y] = "WALLS";
@@ -579,6 +584,7 @@ public class ConsoleP extends JPanel implements KeyListener {
 
 			if (lorannRec.intersects(ouvertRec)) {
 				if (doorOC.getEtat() == "CLOSED") {
+					gold = 0;
 					LevelMaker();
 				}
 				if (doorOC.getEtat() == "OPEN") {
