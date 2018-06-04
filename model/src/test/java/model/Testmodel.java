@@ -17,16 +17,7 @@ public class Testmodel extends TestCase {
 		super();
 	}
 	@Test
-	public void testConsoleP() {
-		String str = "011D111011101111111111102      25552      5    22          2     65    22 1110110  2   2       22    2  2  2   2    11102  7 25 2  2   0110    22 2  2  2  2   2552   822 2 5   4  2   2 101   22 0111  2  5   2       22       2 95   2  3    2011111110111111011111110";
-		
-
-	}
-	protected void setUp() throws Exception{
-		String str = "011D111011101111111111102      25552      5    22          2     65    22 1110110  2   2       22    2  2  2   2    11102  7 25 2  2   0110    22 2  2  2  2   2552   822 2 5   4  2   2 101   22 0111  2  5   2       22       2 95   2  3    2011111110111111011111110";
-		super.setUp();
-	}
-
+	
 	public void testMonster1(){
 		new Monster1(0, 0);
 	}

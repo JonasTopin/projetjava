@@ -1,4 +1,4 @@
-package model;
+/**package model;
 
 import static org.junit.Assert.assertEquals;
 
@@ -55,4 +55,4 @@ public class ExampleTest {
         assertEquals(expected, this.example.toString());
     }
 
-}
+}*/
