@@ -7,7 +7,7 @@ import javax.sound.sampled.Clip;
 
 public class Sound {
     public Sound(){
-        File Clap = new File("../Music/Bomberman.wav");
+        File Clap = new File("../Music/Bomberman2.wav");
         PlaySound(Clap);
         
     }
