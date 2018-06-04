@@ -3,11 +3,18 @@ package model;
 import java.awt.Image;
 
 import javax.swing.ImageIcon;
+/** Creation of the CrystalBall class
+ * 
+ * @author Eloïse FRANCOIS eloise.francois@viacesi.fr
+ * 
+ * The FireBall is the power of Lorann*/
 
 public class FireBall extends Movements{
 
 	Image Fireball;
 	int StateFireBall = 0;
+	
+	/** Define the different images of FireBall*/
 	
 	ImageIcon iFireBall1 = new ImageIcon("../sprite/fireball_1.png");
 	ImageIcon iFireBall2 = new ImageIcon("../sprite/fireball_2.png");
@@ -15,6 +22,14 @@ public class FireBall extends Movements{
 	ImageIcon iFireBall4 = new ImageIcon("../sprite/fireball_4.png");
 	ImageIcon iFireBall5 = new ImageIcon("../sprite/fireball_5.png");
 
+	/** 
+	 * 
+	 * @param Startx
+	 * It's the constructor of FireBall
+	 * @param Starty
+	 * It's the constructor of FireBall
+	 */
+	
 	public FireBall(int Startx, int Starty){
 		x = Startx;
 		y = Starty;
@@ -22,6 +37,11 @@ public class FireBall extends Movements{
 		ImageIcon iFireball = new ImageIcon("../sprite/fireball_1.png");
 		Fireball = iFireball.getImage();
 	}
+/** Define the image of the fireball to use according to its movements
+ * 
+ * @return Fireball 
+ * 				return Fireball
+*/
 
 	public Image getImage(){
 		if (StateFireBall == 0){

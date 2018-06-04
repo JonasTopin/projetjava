@@ -9,9 +9,11 @@ package model;
 public class Example {
 
     /** The id. */
+	
     private final int id;
 
     /** The name. */
+    
     private String    name;
 
     /**
@@ -22,6 +24,7 @@ public class Example {
      * @param name
      *            the name
      */
+  
     public Example(final int id, final String name) {
         super();
         this.id = id;
@@ -31,7 +34,7 @@ public class Example {
     /**
      * Gets the id.
      *
-     * @return the id
+     * @return id
      */
     public int getId() {
         return this.id;
@@ -40,7 +43,7 @@ public class Example {
     /**
      * Gets the name.
      *
-     * @return the name
+     * @return name
      */
     public String getName() {
         return this.name;

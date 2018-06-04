@@ -2,13 +2,24 @@ package model;
 
 import java.awt.Rectangle;
 
+/** Creation of the Movements class
+ * 
+ * @author Eloïse FRANCOIS eloise.francois@viacesi.fr
+ * 
+ * The class defines the different possible movements*/
+
 public class Movements {
 
 
 	public int x,y;
 	public String direction = "DOWN";
 	
-	public Rectangle getBounds(){ //getBounds pour les collisions
+	
+	/** Define the hitbox
+	 * @return box
+	 * 			return box*/
+	
+	public Rectangle getBounds(){ //getBounds for collisions
 		Rectangle Box = new Rectangle(x,y,32,32);
 		return Box;
 	}
@@ -36,6 +47,8 @@ public class Movements {
 	public void setDir(String direction) {
 		this.direction = direction;
 	}
+	
+	/** Define the different orientation*/
 	
 	public void move() {
 		switch (this.getDir()) {
@@ -68,6 +81,7 @@ public class Movements {
 		}
 	}
 	
+	/** Define the different movement */
 	
 	void moveUp() {
 		this.setY(getY() - 32 );

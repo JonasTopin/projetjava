@@ -32,6 +32,8 @@ public abstract class Main {
         } catch (final SQLException exception) {
             exception.printStackTrace();
         }
+
+        view.Sound sound = new view.Sound();
     }
 
 }

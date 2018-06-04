@@ -3,9 +3,17 @@ package model;
 import java.awt.Image;
 
 import javax.swing.ImageIcon;
+/** Creation of the Lorann class
+ * 
+ * @author Eloïse FRANCOIS eloise.francois@viacesi.fr ||
+ * 
+ * Lorann is the hero of the game, he must escape the level 
+ * while picking up the pieces and without the monsters touch him.*/
 
 public class Lorann extends Movements {
 	public static Object lorann;
+	
+	/** Define the different the different angles of view of Lorann*/
 	
 	Image LorannImg;
 	ImageIcon iLorannDown = new ImageIcon("../sprite/lorann_b.png");
@@ -17,13 +25,28 @@ public class Lorann extends Movements {
 	ImageIcon iLorannUpLeft = new ImageIcon("../sprite/lorann_ul.png");
 	ImageIcon iLorannUpRight = new ImageIcon("../sprite/lorann_ur.png");
 	
+	/**
+	 * 
+	 * @param Startx
+	 * It's the constructor of Lorann class
+	 * @param Starty
+	 *  It's the constructor of Lorann class
+	 */
+	
 	public Lorann(int Startx,int Starty){
 		this.x = Startx;
 		this.y = Starty;
 		
+		/** Define the basic image of Lorann */
+		
 		ImageIcon iLorannImg = new ImageIcon("../sprite/lorann_b.png");
 		LorannImg = iLorannImg.getImage();
 	}
+	
+	/** Define the image of Lorann according to his movements 
+	 * @return LorannImg
+	 * 			return LorannImg
+	 * */
 	
 	public Image getImage(){
 		if(this.getDir() == "DOWN"){ 
